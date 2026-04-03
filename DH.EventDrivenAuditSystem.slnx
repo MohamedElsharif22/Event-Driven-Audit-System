@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="DH.EventDrivenAuditSystem.APIs/DH.EventDrivenAuditSystem.APIs.csproj" />
+    <Project Path="DH.EventDrivenAuditSystem.Application/DH.EventDrivenAuditSystem.Application.csproj" Id="7a838d64-8a3b-4ead-8e05-d405b8153e06" />
+    <Project Path="DH.EventDrivenAuditSystem.Domain/DH.EventDrivenAuditSystem.Domain.csproj" Id="6cb2cf15-aff3-4671-9cc5-3723d50450fd" />
+    <Project Path="DH.EventDrivenAuditSystem.Infrastructure/DH.EventDrivenAuditSystem.Infrastructure.csproj" Id="5fa22133-c462-4dc5-8788-d784f30caf58" />
+  </Folder>
+</Solution>

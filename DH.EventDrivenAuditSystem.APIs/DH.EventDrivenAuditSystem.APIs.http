@@ -1,0 +1,6 @@
+@DH.EventDrivenAuditSystem.APIs_HostAddress = http://localhost:5219
+
+GET {{DH.EventDrivenAuditSystem.APIs_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
