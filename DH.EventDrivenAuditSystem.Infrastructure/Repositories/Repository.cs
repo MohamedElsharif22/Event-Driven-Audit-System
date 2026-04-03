@@ -19,9 +19,9 @@ namespace DH.EventDrivenAuditSystem.Infrastructure.Repositories
             _context.Remove(entity);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public IQueryable<TEntity> GetAllAsync()
         {
-            return await _context.Set<TEntity>().ToListAsync();
+            return  _context.Set<TEntity>();
         }
 
         public async Task<TEntity?> GetByIdAsync(int id)

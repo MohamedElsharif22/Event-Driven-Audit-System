@@ -1,4 +1,5 @@
 ﻿using DH.EventDrivenAuditSystem.APIs.Responses;
+using DH.EventDrivenAuditSystem.Application.DTOs;
 using DH.EventDrivenAuditSystem.Application.Features.Enrollments.Commands;
 using DH.EventDrivenAuditSystem.Application.Features.Enrollments.Queries;
 using DH.EventDrivenAuditSystem.Domain.Entities;
@@ -22,12 +23,12 @@ namespace DH.EventDrivenAuditSystem.APIs.Controllers
         /// cref="ApiResponse{T}"/> with a collection of <see cref="Enrollment"/> objects if the operation is
         /// successful; otherwise, an <see cref="ApiResponse{T}"/> with an error message.</returns>
         [HttpGet]
-        public async Task<ActionResult<ApiResponse<IEnumerable<Enrollment>>>> GetEnrollments()
+        public async Task<ActionResult<ApiResponse<IEnumerable<EnrollmentResponse>>>> GetEnrollments()
         {
             var result = await mediator.Send(new GetAllEnrollmentsQuery());
 
             return result.IsSuccess
-                ? Ok(new ApiResponse<IEnumerable<Enrollment>>(result.Value!))
+                ? Ok(new ApiResponse<IEnumerable<EnrollmentResponse>>(result.Value!))
                 : BadRequest(new ApiResponse<string>(result.ErrorMessage ?? "Bad Request", false));
         }
 
