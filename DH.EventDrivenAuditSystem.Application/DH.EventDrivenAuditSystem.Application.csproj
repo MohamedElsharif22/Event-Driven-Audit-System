@@ -16,4 +16,9 @@
     <ProjectReference Include="..\DH.EventDrivenAuditSystem.Domain\DH.EventDrivenAuditSystem.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Events\" />
+    <Folder Include="Handlers\" />
+  </ItemGroup>
+
 </Project>

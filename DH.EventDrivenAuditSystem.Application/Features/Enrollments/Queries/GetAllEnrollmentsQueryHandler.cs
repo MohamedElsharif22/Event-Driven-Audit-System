@@ -1,7 +1,7 @@
 ﻿using DH.EventDrivenAuditSystem.Application.Common;
 using DH.EventDrivenAuditSystem.Application.DTOs;
 using DH.EventDrivenAuditSystem.Domain.Common;
-using DH.EventDrivenAuditSystem.Domain.Entities;
+using DH.EventDrivenAuditSystem.Domain.Courses;
 using MediatR;
 
 namespace DH.EventDrivenAuditSystem.Application.Features.Enrollments.Queries

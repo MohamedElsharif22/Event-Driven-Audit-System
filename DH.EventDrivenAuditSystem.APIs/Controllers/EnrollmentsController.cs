@@ -2,7 +2,7 @@
 using DH.EventDrivenAuditSystem.Application.DTOs;
 using DH.EventDrivenAuditSystem.Application.Features.Enrollments.Commands;
 using DH.EventDrivenAuditSystem.Application.Features.Enrollments.Queries;
-using DH.EventDrivenAuditSystem.Domain.Entities;
+using DH.EventDrivenAuditSystem.Domain.Courses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

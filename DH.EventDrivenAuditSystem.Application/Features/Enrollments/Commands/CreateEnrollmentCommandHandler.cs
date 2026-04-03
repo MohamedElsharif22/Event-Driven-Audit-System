@@ -1,6 +1,7 @@
 ﻿using DH.EventDrivenAuditSystem.Application.Common;
-using DH.EventDrivenAuditSystem.Application.Events;
+using DH.EventDrivenAuditSystem.Application.Features.Enrollments.Events;
 using DH.EventDrivenAuditSystem.Domain.Common;
+using DH.EventDrivenAuditSystem.Domain.Courses;
 using DH.EventDrivenAuditSystem.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -58,11 +59,30 @@ namespace DH.EventDrivenAuditSystem.Application.Features.Enrollments.Commands
 
             _logger.LogInformation("Enrollment created successfully for UserId: {UserId} and CourseId: {CourseId}", request.UserId, request.CourseId);
 
+            // Get domain events raised by the aggregate for audit purposes
+            var domainEvents = fetchedEnrollment.GetDomainEvents();
+            if (domainEvents.Any())
+            {
+                _logger.LogInformation("Domain events raised: {EventCount} event(s)", domainEvents.Count);
+                foreach (var @event in domainEvents)
+                {
+                    _logger.LogInformation("Domain event: {EventType} at {OccurredOn}", @event.GetType().Name, @event.OccurredOn);
+                }
+            }
+
+            // Clear domain events after logging
+            fetchedEnrollment.ClearDomainEvents();
+
+            // Publish integration event for side effects (audit logging, notifications, etc.)
             await _mediator.Publish(
-                new CourseEnrolledEvent(fetchedEnrollment.Id, fetchedEnrollment.UserId, fetchedEnrollment.CourseId, fetchedEnrollment.EnrollmentDate),
+                new CourseEnrolledNotification(
+                    fetchedEnrollment.Id, 
+                    fetchedEnrollment.UserId, 
+                    fetchedEnrollment.CourseId, 
+                    fetchedEnrollment.EnrollmentDate),
                 cancellationToken
             );
-            _logger.LogInformation("CourseEnrolledEvent published for EnrollmentId: {EnrollmentId}", fetchedEnrollment.Id);
+            _logger.LogInformation("CourseEnrolledNotification published for EnrollmentId: {EnrollmentId}", fetchedEnrollment.Id);
 
 
             return Result<string>.Success("Enrollment created successfully.");

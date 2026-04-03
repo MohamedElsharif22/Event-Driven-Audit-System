@@ -1,4 +1,4 @@
-using DH.EventDrivenAuditSystem.Domain.Entities;
+using DH.EventDrivenAuditSystem.Domain.Courses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

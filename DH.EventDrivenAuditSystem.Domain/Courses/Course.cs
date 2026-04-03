@@ -1,6 +1,7 @@
 ﻿using DH.EventDrivenAuditSystem.Domain.Common;
+using DH.EventDrivenAuditSystem.Domain.Entities;
 
-namespace DH.EventDrivenAuditSystem.Domain.Entities
+namespace DH.EventDrivenAuditSystem.Domain.Courses
 {
     public class Course : BaseEntity
     {

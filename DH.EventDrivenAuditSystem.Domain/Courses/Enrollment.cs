@@ -1,6 +1,8 @@
 ﻿using DH.EventDrivenAuditSystem.Domain.Common;
+using DH.EventDrivenAuditSystem.Domain.Courses.Events;
+using DH.EventDrivenAuditSystem.Domain.Entities;
 
-namespace DH.EventDrivenAuditSystem.Domain.Entities
+namespace DH.EventDrivenAuditSystem.Domain.Courses
 {
     public class Enrollment : BaseEntity
     {
@@ -10,6 +12,13 @@ namespace DH.EventDrivenAuditSystem.Domain.Entities
             CourseId = courseId;
             EnrollmentDate = DateTime.UtcNow;
             ExpirationDate = DateTime.UtcNow.AddMonths(1);
+
+            // Raise domain event when enrollment is created
+            RaiseDomainEvent(new CourseEnrolledEvent(
+                UserId: userId,
+                CourseId: courseId,
+                EnrolledAt: EnrollmentDate
+            ));
         }
         public int UserId { get; private set; }
         public int CourseId { get; private set; }

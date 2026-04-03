@@ -1,4 +1,4 @@
-using DH.EventDrivenAuditSystem.Application.Events;
+using DH.EventDrivenAuditSystem.Application.Features.Audit.Events;
 using DH.EventDrivenAuditSystem.Application.Interfaces;
 using System.Threading.Channels;
 

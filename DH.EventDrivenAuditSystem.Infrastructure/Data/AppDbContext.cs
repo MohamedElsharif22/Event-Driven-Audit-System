@@ -1,4 +1,5 @@
-﻿using DH.EventDrivenAuditSystem.Domain.Entities;
+﻿using DH.EventDrivenAuditSystem.Domain.Courses;
+using DH.EventDrivenAuditSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DH.EventDrivenAuditSystem.Infrastructure.Data
