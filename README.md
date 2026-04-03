@@ -3,7 +3,7 @@
 A .NET 10 event-driven application demonstrating automatic audit logging of enrollment activities using domain events, integration events, and background services.
 
 ## 📋 Quick Links
-[Structure](#project-structure) | [Setup](#getting-started) | [Running](#running) | [API](#api-endpoints) | [Testing](#testing-with-scalar) | [Troubleshooting](#troubleshooting)
+[Structure](#-project-structure) | [Setup](#-getting-started) | [Running](#-running) | [API](#-api-endpoints) | [Testing](#-testing-with-scalar) | [Troubleshooting](#-troubleshooting)
  
 ## 🎯 Key Features
 - Event-driven architecture with automatic audit logging
