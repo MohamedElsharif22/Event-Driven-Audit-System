@@ -124,7 +124,7 @@ POST /api/enrollments
 
 ## 🧪 Testing with Scalar
 
-**Access:** Navigate to `https://localhost:5001/scalar/v1`
+**Access:** Navigate to `https://localhost:7075/scalar/v1`
 
 **Workflow:**
 1. GET `/api/users` → Copy a user ID
