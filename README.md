@@ -4,7 +4,7 @@ A .NET 10 event-driven application demonstrating automatic audit logging of enro
 
 ## 📋 Quick Links
 [Structure](#project-structure) | [Setup](#getting-started) | [Running](#running) | [API](#api-endpoints) | [Testing](#testing-with-scalar) | [Troubleshooting](#troubleshooting)
-
+ 
 ## 🎯 Key Features
 - Event-driven architecture with automatic audit logging
 - Asynchronous audit persistence via background worker
@@ -82,7 +82,7 @@ dotnet run
 dotnet run --project DH.EventDrivenAuditSystem.APIs/DH.EventDrivenAuditSystem.APIs.csproj
 ```
 
-**Output:** Application available at `https://localhost:5001` | Database auto-migrates to `myDatabase.db`
+**Output:** Application available at `https://localhost:7075` | Database auto-migrates to `myDatabase.db`
 
 ---
 
@@ -202,7 +202,7 @@ POST /api/enrollments
 
 ```
 1. dotnet run
-2. Open https://localhost:5001/scalar/v1
+2. Open https://localhost:7075/scalar/v1
 3. GET /api/users → Copy userId
 4. GET /api/courses → Copy courseId
 5. POST /api/enrollments { "userId": 1, "courseId": 1 }
