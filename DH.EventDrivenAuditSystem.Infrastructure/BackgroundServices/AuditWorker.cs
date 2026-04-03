@@ -45,21 +45,21 @@ namespace DH.EventDrivenAuditSystem.Infrastructure.BackgroundServices
             using var scope = _scopeFactory.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-            var log = new AuditLog
-            {
-                UserId = evt.UserId,
-                Action = evt.Action,
-                EntityName = evt.EntityName,
-                EntityId = evt.EntityId,
-                CreatedAt = evt.Timestamp,
-                Metadata = evt.Metadata
-            };
+            // Use factory method to create immutable AuditLog with validation
+            var log = AuditLog.Create(
+                userId: evt.UserId,
+                action: evt.Action,
+                entityName: evt.EntityName,
+                entityId: evt.EntityId,
+                createdAt: evt.Timestamp,
+                metadata: evt.Metadata
+            );
 
             db.AuditLogs.Add(log);
             await db.SaveChangesAsync(cancellationToken);
 
-            _logger.LogInformation("AuditLog saved: {Action} on {Entity} ({EntityId} at {DateTime.Now})",
-                evt.Action, evt.EntityName, evt.EntityId, DateTime.Now);
+            _logger.LogInformation("AuditLog saved: {Action} on {Entity} ({EntityId} at {Timestamp})",
+                evt.Action, evt.EntityName, evt.EntityId, DateTime.UtcNow);
         }
     }
 }

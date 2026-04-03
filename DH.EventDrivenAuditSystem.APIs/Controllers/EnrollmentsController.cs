@@ -38,8 +38,8 @@ namespace DH.EventDrivenAuditSystem.APIs.Controllers
             var command = new CreateEnrollmentCommand(request.UserId, request.CourseId);
             var result = await mediator.Send(command);
 
-            _logger.LogInformation("CreateEnrollmentCommand executed with UserId: {UserId}, CourseId: {CourseId}, Result: {Result} at {DateTime.Now}",
-                request.UserId, request.CourseId, result.IsSuccess ? "Success" : $"Failure - {result.ErrorMessage}", DateTime.Now);
+            _logger.LogInformation("CreateEnrollmentCommand executed with UserId: {UserId}, CourseId: {CourseId}, Result: {Result} at {Timestamp}",
+                request.UserId, request.CourseId, result.IsSuccess ? "Success" : $"Failure - {result.ErrorMessage}", DateTime.UtcNow);
             return result.IsSuccess
                 ? Ok(new ApiResponse<string>(result.Value!))
                 : BadRequest(new ApiResponse<string>(result.ErrorMessage ?? "Bad Request", false));

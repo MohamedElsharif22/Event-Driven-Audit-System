@@ -9,6 +9,7 @@ namespace DH.EventDrivenAuditSystem.Domain.Entities
             UserId = userId;
             CourseId = courseId;
             EnrollmentDate = DateTime.UtcNow;
+            ExpirationDate = DateTime.UtcNow.AddMonths(1);
         }
         public int UserId { get; private set; }
         public int CourseId { get; private set; }

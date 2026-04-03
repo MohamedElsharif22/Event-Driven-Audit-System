@@ -19,7 +19,7 @@ namespace DH.EventDrivenAuditSystem.Application.Features.Enrollments.Queries
                                                     e.UserId,
                                                     e.User.Name,
                                                     e.EnrollmentDate,
-                                                    e.ExpirationDate)).ToListAsync();
+                                                    e.ExpirationDate)).ToList();
 
             if (enrollments == null || !enrollments.Any())
                 return Result<IEnumerable<EnrollmentResponse>>.Failure("No enrollments found.");

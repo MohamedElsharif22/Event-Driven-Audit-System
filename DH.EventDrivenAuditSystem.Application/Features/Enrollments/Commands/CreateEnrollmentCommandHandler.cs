@@ -25,6 +25,19 @@ namespace DH.EventDrivenAuditSystem.Application.Features.Enrollments.Commands
             if (course is null)
                 return Result<string>.Failure("Course not found.");
 
+            // Check if user already has an active (non-expired) enrollment in this course
+            var existingActiveEnrollment = await _unitOfWork.Repository<Enrollment>()
+                .FirstOrDefaultAsync(e => e.UserId == request.UserId 
+                    && e.CourseId == request.CourseId 
+                    && e.ExpirationDate > DateTime.UtcNow);
+
+            if (existingActiveEnrollment is not null)
+            {
+                _logger.LogWarning("User {UserId} attempted to enroll in course {CourseId} but already has an active enrollment until {ExpirationDate}",
+                    request.UserId, request.CourseId, existingActiveEnrollment.ExpirationDate);
+                return Result<string>.Failure("User already has an active enrollment in this course.");
+            }
+
             var enrollment = course.AddEnrollment(user);
             int result;
             try
