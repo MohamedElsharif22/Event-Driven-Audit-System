@@ -1,5 +1,6 @@
 using DH.EventDrivenAuditSystem.APIs.Responses;
 using DH.EventDrivenAuditSystem.APIs.Responses.Errors;
+using FluentValidation;
 
 namespace DH.EventDrivenAuditSystem.APIs.Middleware
 {
@@ -15,6 +16,18 @@ namespace DH.EventDrivenAuditSystem.APIs.Middleware
             try
             {
                 await _next.Invoke(context);
+            }
+            catch (ValidationException vex)
+            {
+                _logger.LogWarning(vex, "Validation exception occurred");
+
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Response.ContentType = "application/json";
+
+                var errors = vex.Errors.Select(e => e.ErrorMessage).ToList();
+                var response = new ApiValidationErrorResponse { Errors = errors };
+
+                await context.Response.WriteAsJsonAsync(response);
             }
             catch (Exception ex)
             {
